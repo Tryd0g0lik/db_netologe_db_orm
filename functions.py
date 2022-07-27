@@ -1,15 +1,14 @@
 import psycopg2
-import peewee
 import sys
 
-# from module.sql.sql_manager.sql_manager import BaseModel
-from module.stock.stock import Stock
-from module.shop.shop import Shop
-from module.book.book import Book
-from module.publisher.publisher import Publisher
-from module.sale.sale import Sale
+# from model.sql.sql_manager.sql_manager import BaseModel
+from db_orm.crs.model.stock.stock import Stock
+from db_orm.crs.model.shop.shop import Shop
+from db_orm.crs.model.book.book import Book
+from db_orm.crs.model.publisher.publisher import Publisher
+from db_orm.crs.model.sale.sale import Sale
 
-# dir(Stock)
+# Check availabity the table of DB
 def __referenceInModel():
   i = 0
   while True:
@@ -72,3 +71,13 @@ def checkTableInSQL():
     {sys.exc_info()}
     """)
     exit()
+
+
+# Create db-tables
+def Create_db_table():
+  list_tables = [Publisher, Shop, Book,Stock, Sale]
+
+  for table_name in list_tables:
+    table_name.create_table()
+  print("Create tables!")
+

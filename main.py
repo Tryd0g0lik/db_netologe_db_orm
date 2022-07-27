@@ -1,7 +1,7 @@
-# from module.sql.create_db.create_db import DataBase
-from functions import checkTableInSQL
+# from model.sql.create_db.create_db import DataBase
+from functions import *
 
-# from module.sql.sql_manager.sql_manager import BaseModel
+# from model.sql.sql_manager.sql_manager import BaseModel
 from peewee import *
 # print("""Do you want to create a new database?
 # If yeas - 'y'
@@ -18,7 +18,7 @@ from peewee import *
 #     exit()
 #
 #   if responce_new_db == 'y' and responce_new_db_len == 1:
-#     import module.sql.create_db.create_db
+#     import model.sql.create_db.create_db
 #
 #   elif responce_new_db == 'n' and responce_new_db_len == 1:
 #
@@ -29,20 +29,32 @@ from peewee import *
 #     exit()
 #   i += 1
 
-print("""Do you want:
- - check presence table - 'pt'
- - create table - 'ct';
- 
- - """)
-responce = input(": ")
-responce = (responce).strip(" ").lower()
-responce_len = len(responce.split(" "))
+while True:
 
-if responce_len == 1:
-  if responce == 'ct':
-    DSN = """postgres://postgres:nlo7@localhost:5432/db_orm"""
-    exit()
+  print("""Do you want:
+   - create database      - 'db';
+   - check presence table - 'pt';
+   - create table         - 'ct';
+   - exite or stop        - 'ex';
+   - """)
+  responce = input(": ")
+  responce = (responce).strip(" ").lower()
+  responce_len = len(responce.split(" "))
 
-  elif responce == 'pt':
-    checkTableInSQL()
-    exit()
+
+
+  if responce_len == 1:
+    if responce == 'db':
+      DSN = """postgres://postgres:nlo7@localhost:5432/db_orm"""
+      continue
+
+    elif responce == 'pt':
+      checkTableInSQL()
+      continue
+
+    elif responce == 'ct':
+      Create_db_table()
+      continue
+
+    elif responce == 'ex':
+      break
