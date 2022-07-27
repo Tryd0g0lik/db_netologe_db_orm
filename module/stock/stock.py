@@ -1,7 +1,8 @@
 from peewee import *
-from ..sql.sql_manager.sql_manager import BaseModel
-from ..book.book import Book
-from ..shop.shop import Shop
+from db_orm.module.sql.sql_manager.sql_manager import BaseModel
+
+from db_orm.module.book.book import Book
+from db_orm.module.shop.shop import Shop
 
 
 class Stock(BaseModel):

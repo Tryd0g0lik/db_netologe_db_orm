@@ -1,4 +1,7 @@
 # from module.sql.create_db.create_db import DataBase
+from functions import checkTableInSQL
+
+# from module.sql.sql_manager.sql_manager import BaseModel
 from peewee import *
 # print("""Do you want to create a new database?
 # If yeas - 'y'
@@ -7,8 +10,8 @@ from peewee import *
 # responce_new_db = (responce_new_db).strip()
 # responce_new_db_len = len(responce_new_db.split(" "))
 # i = 0
-#
-#
+
+# #
 # while True:
 #
 #   if i == 3:
@@ -25,15 +28,21 @@ from peewee import *
 #     print("You are a loser! Repeat.")
 #     exit()
 #   i += 1
-#
-# print("""Do you want:
-#  - create table - 'ct';
-#  - """)
-# responce = input(": ")
-# responce = (responce_new_db).strip(" ")
-# responce_len = len(responce_new_db.split(" "))
 
-# if responce == 'ct' and responce_len == 1:
-DSN = """postgres://postgres:nlo7@localhost:5432/db_orm"""
+print("""Do you want:
+ - check presence table - 'pt'
+ - create table - 'ct';
+ 
+ - """)
+responce = input(": ")
+responce = (responce).strip(" ").lower()
+responce_len = len(responce.split(" "))
 
-  pass
+if responce_len == 1:
+  if responce == 'ct':
+    DSN = """postgres://postgres:nlo7@localhost:5432/db_orm"""
+    exit()
+
+  elif responce == 'pt':
+    checkTableInSQL()
+    exit()

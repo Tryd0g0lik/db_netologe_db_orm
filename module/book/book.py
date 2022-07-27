@@ -1,6 +1,6 @@
 from peewee import *
-from ..sql.sql_manager.sql_manager import BaseModel
-from ..publisher.publisher import Publisher
+from db_orm.module.sql.sql_manager.sql_manager import BaseModel
+from db_orm.module.publisher.publisher import Publisher
 
 class Book(BaseModel):
   title = CharField(null=False)

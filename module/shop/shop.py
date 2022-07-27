@@ -1,8 +1,9 @@
 from peewee import *
-from ..sql.sql_manager.sql_manager import BaseMooel
+# from db_orm.module.sql.sql_manager.sql_manager import BaseModel
+from db_orm.module.sql.sql_manager.sql_manager import BaseModel
 
 
-class Shop(BaseMooel):
+class Shop(BaseModel):
   name = CharField(null = False)
 
   class Meta:
