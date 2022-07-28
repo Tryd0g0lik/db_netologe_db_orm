@@ -1,12 +1,27 @@
 import psycopg2
 import sys
+from datetime import *
 
-# from model.sql.sql_manager.sql_manager import BaseModel
+# Model
 from db_orm.crs.model.stock.stock import Stock
 from db_orm.crs.model.shop.shop import Shop
 from db_orm.crs.model.book.book import Book
 from db_orm.crs.model.publisher.publisher import Publisher
 from db_orm.crs.model.sale.sale import Sale
+
+# CRUD
+from crs.create_get.creating import *
+
+def _returnNameTableDB():
+  print("""
+      DB 'db_orm' can to have tables:
+       - Book;
+       - Publisher;
+       - Sale;
+       - Shop;
+       - Stock 
+       Insert only one the table name
+      """)
 
 # Check availabity the table of DB
 def __referenceInModel():
@@ -14,16 +29,8 @@ def __referenceInModel():
   while True:
     if i == 3:
       return None
-
-    print("""
-    DB 'db_orm' can to have tables:
-     - Book;
-     - Publisher;
-     - Sale;
-     - Shop;
-     - Stock 
-     Insert only one the table name
-    """)
+    
+    _returnNameTableDB()
     responce_var = input("Only one: ")
     responce_var = responce_var.strip()
     responce_len = len(responce_var.split(" "))
@@ -81,3 +88,40 @@ def Create_db_table():
     table_name.create_table()
   print("Create tables!")
 
+# create data row in TadaBase
+def crate_date_row():
+  print("""
+  Enter a name data-table from the database 'bd-orm'  
+  """)
+  _returnNameTableDB()
+
+  t_name = input("Single name: ")
+  t_name = (t_name).strip().lower().capitalize()
+  t_name_len = len(t_name.split(" "))
+
+  if t_name_len == 1:
+    if t_name == 'Book':
+      print("title_book")
+      title_book = input(': ' )
+      title_book = (title_book).strip()
+      print()
+
+      print("id_publisher")
+      id_publisher = input(": ")
+      id_publisher = id_publisher.strip()
+      cdbr = CreateDBRows(t_name, title_book = title_book, id_publisher = id_publisher)
+      cdbr.createRowData()
+      # print("CreateDBRows))")
+
+    elif t_name == 'Publisher':
+        pass
+    elif t_name == 'Sale':
+        pass
+    elif t_name == 'Shop':
+        pass
+    elif t_name == 'Stock':
+        pass
+    else:
+      print("Repeat")
+      return
+    exit()

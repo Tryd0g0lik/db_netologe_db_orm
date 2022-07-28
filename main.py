@@ -1,8 +1,9 @@
 # from model.sql.create_db.create_db import DataBase
 from functions import *
+#
+# # from model.sql.sql_manager.sql_manager import BaseModel
+# from peewee import *
 
-# from model.sql.sql_manager.sql_manager import BaseModel
-from peewee import *
 # print("""Do you want to create a new database?
 # If yeas - 'y'
 # If No -   'n'""")
@@ -36,6 +37,8 @@ while True:
    - check presence table - 'pt';
    - create table         - 'ct';
    - exite or stop        - 'ex';
+   
+   - insert data          - 'i';
    - """)
   responce = input(": ")
   responce = (responce).strip(" ").lower()
@@ -50,11 +53,15 @@ while True:
 
     elif responce == 'pt':
       checkTableInSQL()
+
       continue
 
     elif responce == 'ct':
       Create_db_table()
       continue
+
+    elif responce == 'i':
+      crate_date_row()
 
     elif responce == 'ex':
       break
