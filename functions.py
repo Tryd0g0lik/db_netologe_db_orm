@@ -110,7 +110,8 @@ def crate_date_row():
       id_publisher = input(": ")
       id_publisher = id_publisher.strip()
       cdbr = CreateDBRows(t_name, title_book = title_book, id_publisher = id_publisher)
-      cdbr.createRowData()
+      cdbr.get_variable()
+      # cdbr.createRowData()
       # print("CreateDBRows))")
 
     elif t_name == 'Publisher':

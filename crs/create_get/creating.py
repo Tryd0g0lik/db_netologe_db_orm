@@ -35,22 +35,37 @@ with PostgresqlDatabase('bd_orm', user = 'postgres', password = 'nlo7',
 
 
       dict_name = self.table_name
-      i = 0
-      for dictionary_name in self.data_tables:
-        print(dictionary_name[dict_name] == self.data_tables[dict_name])
 
-        print(f"""I: {i}""")
-        i += 1
-      return
+      for i in range(len(self.data_tables)):
+        for dictionary_key in self.data_tables[i].keys():
+          print(f"""dictionary_key: {dictionary_key}""")
+          if dictionary_key == self.table_name:
+            print(f"""dictionary_key: {dictionary_key} ==
+            self.table_name: {self.table_name} """)
+            return (self.table_name, self.data_tables[i])
+          else:
+            print(f"""dictionary_key: {dictionary_key} ==
+  self.table_name: {self.table_name} """)
+            print(f"""I: {i}""")
 
-    def createRowData(self):
-      CreateDBRows.__dataTable(self)
-      print("CreateDBRows))")
-      pass
-      # try:
-      #   with db.atomic():
-      #     tables = self.table_name
-          # return tables.create(data_tables)
+    def get_variable(self):
+      tuple_response_data = CreateDBRows.__dataTable(self)
+      print(f"""tuple_response_data[0]: {tuple_response_data[0]}""")
+      rd = tuple_response_data[0]
+        # = tuple_response_data[1][tuple_response_data[0]]
+      globals()[str(rd)] = tuple_response_data[1][tuple_response_data[0]]
+      print(f"Book: {Book}")
+
+
+    # def createRowData(self):
+    #
+    #   print(f"tuple_response_data: {tuple_response_data}")
+    #
+    #
+    #   try:
+    #     with db.atomic():
+    #       tuple_response_data[1]
+    #       return tuple_response_data[0].create()
 
 
 
