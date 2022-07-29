@@ -1,6 +1,8 @@
+from datetime import *
 import psycopg2
 import sys
-from datetime import *
+import re
+from sqlalchemy import *
 
 # Model
 from db_orm.crs.model.stock.stock import Stock
@@ -8,18 +10,18 @@ from db_orm.crs.model.shop.shop import Shop
 from db_orm.crs.model.book.book import Book
 from db_orm.crs.model.publisher.publisher import Publisher
 from db_orm.crs.model.sale.sale import Sale
-
+from db_orm.crs.select_get.select import *
 # CRUD
 from crs.create_get.creating import *
 
 def _returnNameTableDB():
   print("""
       DB 'db_orm' can to have tables:
-       - Book;
-       - Publisher;
-       - Sale;
        - Shop;
+       - Publisher;
+       - Book;       
        - Stock 
+       - Sale;
        Insert only one the table name
       """)
 
@@ -90,39 +92,150 @@ def Create_db_table():
 
 # create data row in TadaBase
 def crate_date_row():
-  print("""
-  Enter a name data-table from the database 'bd-orm'  
-  """)
-  _returnNameTableDB()
+  while True:
 
-  t_name = input("Single name: ")
-  t_name = (t_name).strip().lower().capitalize()
-  t_name_len = len(t_name.split(" "))
+    print("""
+    Enter data-table a name from the database 'bd-orm' OR 
+    enter the symbols 'ex' im order to be exit.  
+    """)
+    _returnNameTableDB()
 
-  if t_name_len == 1:
-    if t_name == 'Book':
-      print("title_book")
-      title_book = input(': ' )
-      title_book = (title_book).strip()
-      print()
+    t_name = input("Single name: ")
+    t_name = (t_name).strip().lower().capitalize()
+    t_name_len = len(t_name.split(" "))
 
-      print("id_publisher")
-      id_publisher = input(": ")
-      id_publisher = id_publisher.strip()
-      cdbr = CreateDBRows(t_name, title_book = title_book, id_publisher = id_publisher)
-      cdbr.get_variable()
-      # cdbr.createRowData()
-      # print("CreateDBRows))")
+    if t_name == 'Ex':
 
-    elif t_name == 'Publisher':
-        pass
-    elif t_name == 'Sale':
-        pass
-    elif t_name == 'Shop':
-        pass
-    elif t_name == 'Stock':
-        pass
-    else:
-      print("Repeat")
       return
-    exit()
+
+    elif t_name_len == 1:
+      if t_name == 'Book':
+        print("Title_book")
+        title_book = input(': ' )
+        title_book = (title_book).strip()
+        print()
+
+        print("id_publisher")
+        id_publisher = input(": ")
+        id_publisher = id_publisher.strip()
+        cdbr = CreateDBRows(t_name, title_book = title_book, id_publisher = id_publisher)
+        cdbr._get_db_insert()
+        continue
+
+      elif t_name == 'Publisher':
+
+
+        print("Name")
+        name_publisher = input(': ')
+        name_publisher = (name_publisher).strip()
+        print()
+
+        cdbr = CreateDBRows(t_name, name_publisher=name_publisher)
+        cdbr._get_db_insert()
+        continue
+
+      elif t_name == 'Sale':
+        y = re.compile(r"[0-9]{4}", flags=0)
+        m = re.compile("^[0-9]{1,}")
+        d = re.compile(r"[0-9]{1,2}", flags=0)
+
+        print("price")
+        price = input(': ')
+        price = float((price).strip())
+        print()
+
+        # date_sale = datetime.date.today()
+        # date_sale = (date.today())
+        # print('date: ', date_sale)
+        # print()
+
+        print("id_stock")
+        id_stock = input(': ')
+
+        if m.findall(id_stock):
+          id_stock = int((id_stock).strip())
+        else:
+          print("Error into the inputted ID of Stock")
+
+        print()
+
+        print("sale_count")
+        sale_count = input(': ')
+        if m.findall(sale_count):
+          sale_count = int((sale_count).strip())
+        else:
+          print("Error into the inputted Count of Sale")
+        print()
+
+        cdbr = CreateDBRows(t_name, price=price, date_sale=date_sale,\
+                            id_stock=id_stock, sale_count=sale_count)
+        cdbr._get_db_insert()
+        continue
+
+
+      elif t_name == 'Shop':
+        print("Name_Shop")
+        name_shop = input(': ')
+        name_shop = (name_shop).strip()
+        print()
+
+        cdbr = CreateDBRows(t_name, name_shop=name_shop)
+        cdbr._get_db_insert()
+        continue
+
+      elif t_name == 'Stock':
+        print("id_book")
+        id_book = input(': ')
+        id_book = int((id_book).strip())
+        print()
+
+        print("id_shop")
+        id_shop = input(': ')
+        id_shop = int((id_shop).strip())
+        print()
+
+        print("stock_count")
+        stock_count = input(': ')
+        stock_count = int((stock_count).strip())
+        print()
+
+        cdbr = CreateDBRows(t_name, id_book=id_book, id_shop=id_shop, stock_count=stock_count)
+        cdbr._get_db_insert()
+        continue
+
+      else:
+        print("Repeat")
+        continue
+
+  exit()
+
+# Select data from the table
+def select_get_db():
+  print("""If you want to get data from the db, when insert Table_name""")
+  table_name = input(": ")
+  table_name = table_name.strip()
+#   https://discordapp.com/channels/974228068640096299/978697996894109716/1001749732361773087
+  print("""Insert Id or the Name position""")
+
+  response_position_var = '%s, %s' % (input('Name-column: '),input('Data-column: '))
+  response_position_var = (response_position_var).strip().split(",")
+
+  name_column = (response_position_var[0]).strip().lower()
+  data_column = (response_position_var[1]).strip().lower()
+
+  int_var = re.compile(r"^[0-9]{0,}")
+  column_var = re.compile(r"^[А-Яа-яA-Za-z]{1,}", re.I)
+
+
+  if column_var.findall(name_column) and int_var.findall(data_column):
+    name_column = int(data_column)
+    print("111111")
+
+    g =  GetOneRow(table_name, name_column)
+    g.get_one_id(data_column)
+
+  # elif product_var == response_position_var:
+  #   print("22222222222")
+
+  else:
+    print("000000")

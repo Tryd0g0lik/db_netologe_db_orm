@@ -39,6 +39,7 @@ while True:
    - exite or stop        - 'ex';
    
    - insert data          - 'i';
+   - select data          - 's'
    - """)
   responce = input(": ")
   responce = (responce).strip(" ").lower()
@@ -48,7 +49,7 @@ while True:
 
   if responce_len == 1:
     if responce == 'db':
-      DSN = """postgres://postgres:nlo7@localhost:5432/db_orm"""
+      DSN = """postgres://postgres:nlo7@localhost:5432/bd_orm"""
       continue
 
     elif responce == 'pt':
@@ -62,6 +63,9 @@ while True:
 
     elif responce == 'i':
       crate_date_row()
+
+    elif responce == 's':
+      select_get_db()
 
     elif responce == 'ex':
       break
