@@ -144,11 +144,6 @@ def crate_date_row():
         price = float((price).strip())
         print()
 
-        # date_sale = datetime.date.today()
-        # date_sale = (date.today())
-        # print('date: ', date_sale)
-        # print()
-
         print("id_stock")
         id_stock = input(': ')
 
@@ -211,31 +206,22 @@ def crate_date_row():
 
 # Select data from the table
 def select_get_db():
-  print("""If you want to get data from the db, when insert Table_name""")
-  table_name = input(": ")
-  table_name = table_name.strip()
-#   https://discordapp.com/channels/974228068640096299/978697996894109716/1001749732361773087
-  print("""Insert Id or the Name position""")
-
-  response_position_var = '%s, %s' % (input('Name-column: '),input('Data-column: '))
-  response_position_var = (response_position_var).strip().split(",")
-
-  name_column = (response_position_var[0]).strip().lower()
-  data_column = (response_position_var[1]).strip().lower()
-
-  int_var = re.compile(r"^[0-9]{0,}")
-  column_var = re.compile(r"^[А-Яа-яA-Za-z]{1,}", re.I)
+  # print("""Get data from the Publisher""")
+  # print("""Insert Id or the Name position""")
+  #
+  # name_publisher = '%s' % (input('Name: '))
+  # name_publisher = (name_publisher).strip()
+  #
+  # name_var = re.compile(r"^[А-Яа-яA-Za-z]{1,}", re.I)
+  #
+  #
+  # if name_var.findall(name_publisher):
 
 
-  if column_var.findall(name_column) and int_var.findall(data_column):
-    name_column = int(data_column)
-    print("111111")
-
-    g =  GetOneRow(table_name, name_column)
-    g.get_one_id(data_column)
 
   # elif product_var == response_position_var:
   #   print("22222222222")
 
-  else:
-    print("000000")
+  # else:
+  print("000000")
+
