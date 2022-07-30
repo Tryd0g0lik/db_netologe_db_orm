@@ -1,8 +1,10 @@
 
 # from peewee import PostgresqlDatabase
-from db_orm.crs.model.sql.db import db
 # from db_orm.crs.model.publisher.publisher import *
 # from ..model.sql.db import db
+# from crs.model.sql.db import db
+
+from db_orm.crs.model.sql.db import db_postgres
 from db_orm.crs.model.publisher.publisher import Publisher
 
 Publisher.select()
