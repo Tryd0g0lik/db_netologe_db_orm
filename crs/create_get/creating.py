@@ -1,13 +1,13 @@
-from peewee import *
+# from peewee import *
 from datetime import *
 import psycopg2
-from db_orm.crs.model.sql.db import db
-
+# from ..crs.model.sql.db import db_postgres
+from ..model.sql.db import db_postgres
 from db_orm.crs.model.shop.shop import Shop
 from db_orm.crs.model.sale.sale import Sale
 from db_orm.crs.model.book.book import Book
 from db_orm.crs.model.stock.stock import Stock
-from db_orm.crs.model.publisher.publisher import Publisher
+from db_orm.crs.model.publisher.publish import Publisher
 #
 # with PostgresqlDatabase('bd_orm', user = 'postgres', password = 'nlo7',
 #                         host = 'localhost', port = 5432) as db:

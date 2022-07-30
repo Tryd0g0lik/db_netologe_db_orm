@@ -1,4 +1,4 @@
-from peewee import *
+from peewee import CharField
 from db_orm.crs.model.sql.sql_manager.sql_manager import BaseModel
 
 class Publisher(BaseModel):
@@ -7,5 +7,9 @@ class Publisher(BaseModel):
 
   class Meta:
     table_name = 'Publisher'
+
+
+
+
 
 

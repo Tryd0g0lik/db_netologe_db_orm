@@ -1,5 +1,6 @@
 # from model.sql.create_db.create_db import DataBase
-from functions import *
+from functions import checkTableInSQL
+from crs.model.sql.db import db_postgres
 
 while True:
 
@@ -37,6 +38,9 @@ while True:
 
     elif responce == 's':
       # select_get_db() Функцию удалил - работаю с ошибкой.
+      from crs.model.sql.sql_manager.sql_manager import BaseModel
+
+      print(BaseModel)
 
     elif responce == 'ex':
       break

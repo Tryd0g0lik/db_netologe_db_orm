@@ -1,4 +1,4 @@
-from peewee import *
+from peewee import FloatField, DateField, ForeignKeyField, IntegerField
 from db_orm.crs.model.sql.sql_manager.sql_manager import BaseModel
 from db_orm.crs.model.stock.stock import Stock
 

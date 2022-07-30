@@ -1,6 +1,7 @@
-from peewee import *
+from peewee import CharField
+from peewee import ForeignKeyField
 from db_orm.crs.model.sql.sql_manager.sql_manager import BaseModel
-from db_orm.crs.model.publisher.publisher import Publisher
+from db_orm.crs.model.publisher.publish import Publisher
 
 class Book(BaseModel):
   title = CharField(null=False)

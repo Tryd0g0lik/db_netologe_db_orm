@@ -8,7 +8,7 @@ import re
 from db_orm.crs.model.stock.stock import Stock
 from db_orm.crs.model.shop.shop import Shop
 from db_orm.crs.model.book.book import Book
-from db_orm.crs.model.publisher.publisher import Publisher
+from db_orm.crs.model.publisher.publish import Publisher
 from db_orm.crs.model.sale.sale import Sale
 from db_orm.crs.select_get.select import *
 # CRUD

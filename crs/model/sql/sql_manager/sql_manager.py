@@ -1,4 +1,5 @@
-from peewee import *
+from peewee import Model
+from peewee import PrimaryKeyField
 from db_orm.crs.model.sql.db import db_postgres
 # import sqlalchemy
 # import psycopg2
@@ -15,6 +16,6 @@ class BaseModel(Model):
   id = PrimaryKeyField(unique=True, primary_key=True)
 
   class Meta:
-    database = db_postgres()
+    database = db_postgres
     order_by = id
 
