@@ -1,8 +1,8 @@
-from datetime import *
-import psycopg2
-import sys
+# from datetime import *
+# import psycopg2
+# import sys
 import re
-from sqlalchemy import *
+
 
 # Model
 from db_orm.crs.model.stock.stock import Stock

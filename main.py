@@ -36,7 +36,7 @@ while True:
       crate_date_row()
 
     elif responce == 's':
-      select_get_db()
+      # select_get_db() Функцию удалил - работаю с ошибкой.
 
     elif responce == 'ex':
       break
