@@ -2,8 +2,8 @@
 # from peewee import PostgresqlDatabase
 from db_orm.crs.model.sql.db import db
 # from db_orm.crs.model.publisher.publisher import *
-from ..model.sql.db import db
-from ..model.publisher.publisher import Publisher
+# from ..model.sql.db import db
+from db_orm.crs.model.publisher.publisher import Publisher
 
 Publisher.select()
 # Publisher.name(['Spring'])

@@ -15,6 +15,6 @@ class BaseModel(Model):
   id = PrimaryKeyField(unique=True, primary_key=True)
 
   class Meta:
-    database = db
+    database = db()
     order_by = id
 
