@@ -1,16 +1,19 @@
 # from datetime import *
 # import psycopg2
-# import sys
+
+import sys
 import re
 
-
+from datetime import date
+from  db_orm.crs.get.data_select import filter
 # Model
 from db_orm.crs.model.stock.stock import Stock
 from db_orm.crs.model.shop.shop import Shop
 from db_orm.crs.model.book.book import Book
 from db_orm.crs.model.publisher.publish import Publisher
 from db_orm.crs.model.sale.sale import Sale
-from db_orm.crs.select_get.select import *
+
+
 # CRUD
 from crs.create_get.creating import *
 
@@ -153,7 +156,7 @@ def crate_date_row():
           print("Error into the inputted ID of Stock")
 
         print()
-
+        date_sale = date.today()
         print("sale_count")
         sale_count = input(': ')
         if m.findall(sale_count):
@@ -206,22 +209,71 @@ def crate_date_row():
 
 # Select data from the table
 def select_get_db():
-  # print("""Get data from the Publisher""")
-  # print("""Insert Id or the Name position""")
+  print("""==Get data  of Publishers==""")
+  print("""Insert Id or publisher's name only an one publisher""")
+
+  name_publisher = '%s, %s' % (input('Name: '), input('Id: '))
+  name_publisher = (name_publisher).strip().split(", ")
   #
-  # name_publisher = '%s' % (input('Name: '))
-  # name_publisher = (name_publisher).strip()
+  name_var = re.compile(r"^[А-Яа-яA-Za-z]{1,}", re.I)
+  id_var = re.compile(r"^[0-9]{1,}")
   #
-  # name_var = re.compile(r"^[А-Яа-яA-Za-z]{1,}", re.I)
-  #
-  #
-  # if name_var.findall(name_publisher):
+  print(('len:_ ', len(name_publisher)))
 
 
 
-  # elif product_var == response_position_var:
-  #   print("22222222222")
 
-  # else:
-  print("000000")
+  if len(name_publisher) > 1:
+    if name_var.findall((name_publisher[0]).strip()):
+        name = str(name_publisher[0])
+    else:
+      name = None
+
+    if  (name_publisher[1]).strip() != None:
+        id_ = int((name_publisher[1]).strip())
+        print('id_: ', id_)
+    else:
+      id_ = None
+    if name == None and id_ == None:
+
+      print("You are loo-ser!")
+      print(name, id_)
+      exit()
+
+    else:
+      print('00000:_' , name, id_)
+
+      fltr = filter(name, id_)
+      fltr.one_publisher()
+
+  elif len(name_publisher) == 1:
+    if name_var.findall((name_publisher[0]).strip()):
+      name = str(name_publisher[0])
+
+      print("3333333")
+      fltr = filter(name)
+      fltr.one_publisher()
+
+    else:
+      name = None
+
+    if id_var.findall((name_publisher[0]).strip()):
+      id_ = int((name_publisher[0]).strip())
+      print('id_: ', id_)
+
+      print("444444444444444")
+      fltr = filter(id_)
+      fltr.one_publisher()
+
+    else:
+      id_ = None
+
+    if name == None and id_ == None:
+
+      print("You are loo-ser!")
+      print(name, id_)
+      exit()
+
+
+
 
