@@ -33,6 +33,7 @@ while True:
       continue
 
     elif responce == 'ct':
+      print("""You are created more one teble. It's: Publisher, Shop, Book,Stock, Sale""")
       Create_db_table()
       continue
 

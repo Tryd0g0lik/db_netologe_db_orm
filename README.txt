@@ -1,1 +1,1 @@
-download files in the 'db_orm' folder  
+download files into the 'db_orm' folder

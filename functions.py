@@ -48,11 +48,9 @@ def __referenceInModel():
       return responce_var
 
     i += 1
-# className_var = Publisher()
 
 
 def checkTableInSQL():
-  # print(f"222: ")
   responce_var = __referenceInModel()
 
   if responce_var == None:
@@ -61,9 +59,7 @@ def checkTableInSQL():
 
   else:
 
-    # print("0000")
     try:
-      # className_var.SELECT(id = 0)
       responce_var.SELECT(id = 0)
 
     except (NameError, EnvironmentError, NameError,
@@ -72,7 +68,8 @@ def checkTableInSQL():
           AttributeError, psycopg2.errors.DuplicateDatabase,
             psycopg2.errors.UndefinedTable) as er:
       if psycopg2.errors.UndefinedTable or AttributeError:
-        print("Can't fined the table")
+        print("Sorry. This's function the closed")
+        # print("Can't fined the table")
         exit()
       else:
         print(f""""
@@ -98,7 +95,7 @@ def crate_date_row():
   while True:
 
     print("""
-    Enter data-table a name from the database 'bd-orm' OR 
+    Enter the name data-table from the database 'bd-orm' OR 
     enter the symbols 'ex' im order to be exit.  
     """)
     _returnNameTableDB()
@@ -172,7 +169,7 @@ def crate_date_row():
 
 
       elif t_name == 'Shop':
-        print("Name_Shop")
+        print("Name the the shop")
         name_shop = input(': ')
         name_shop = (name_shop).strip()
         print()
@@ -182,12 +179,12 @@ def crate_date_row():
         continue
 
       elif t_name == 'Stock':
-        print("id_book")
+        print("id-book from a Book db")
         id_book = input(': ')
         id_book = int((id_book).strip())
         print()
 
-        print("id_shop")
+        print("id-shop from Shop db")
         id_shop = input(': ')
         id_shop = int((id_shop).strip())
         print()
@@ -203,7 +200,7 @@ def crate_date_row():
 
       else:
         print("Repeat")
-        continue
+        return
 
   exit()
 
@@ -224,8 +221,8 @@ def select_get_db():
 
 
   if len(name_publisher) > 1:
-    if name_var.findall((name_publisher[0]).strip()):
-        name = str(name_publisher[0])
+    if name_var.findall(str(name_publisher[0]).strip()):
+        name = ((str(name_publisher[0]).strip().split(" "))[0]).strip("- ,")
     else:
       name = None
 
@@ -241,7 +238,6 @@ def select_get_db():
       exit()
 
     else:
-      print('00000:_' , name, id_)
 
       fltr = filter(name, id_)
       fltr.one_publisher()
@@ -250,7 +246,6 @@ def select_get_db():
     if name_var.findall((name_publisher[0]).strip()):
       name = str(name_publisher[0])
 
-      print("3333333")
       fltr = filter(name)
       fltr.one_publisher()
 
@@ -259,9 +254,7 @@ def select_get_db():
 
     if id_var.findall((name_publisher[0]).strip()):
       id_ = int((name_publisher[0]).strip())
-      print('id_: ', id_)
 
-      print("444444444444444")
       fltr = filter(id_)
       fltr.one_publisher()
 
